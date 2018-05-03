@@ -10,7 +10,7 @@ $builder = new-object System.Text.StringBuilder;
 
 foreach($line in $content)
 {
-    if($line.IndexOf($token) != -1)
+    if($line.IndexOf($token) -ne -1)
     {
         Write-Warning("Token Found");
     }
