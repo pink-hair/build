@@ -32,6 +32,6 @@ else
         $tail = "-ci:$subTail";
     }
 }
-git ad
+
 $build = "$buildNumber$tail"
 Write-Host "##vso[task.setvariable variable=CI.NugetBuildNumber]$build";
