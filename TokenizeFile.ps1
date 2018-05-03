@@ -8,12 +8,14 @@ $content = get-content $fileName;
 
 $builder = new-object System.Text.StringBuilder;
 
-foreach($line in $content)
+for($i = 0; $i -lt $content.Length; $i++)
 {
-    if($line.IndexOf($token) -ne -1)
+    $line = $content[$i];
+    $index = $line.IndexOf($token);
+    if($index -ne  -1)
     {
-        Write-Warning("Token Found");
-    }
+        Write-Warning("Token '$token' Found at line $i at character $index");
+    }    
 
     $newLine = $line.Replace($token, $replacementValue);
     [void]$builder.AppendLine($line);
