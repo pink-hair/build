@@ -18,7 +18,16 @@ else
     {
         $compoundBranchName = [System.Tsdf.RegularExpressions.Regex]::Replace($branch, "[^A-Za-z0-9]", "").ToLowerInvariant();
 
-        $take = $compoundBranchName.Length >= 16 ? 16 : $compoundBranchName.Length;
+        [int]$take = 0;
+        if($compoundBranchName.Length -gte 16)
+        {
+            $take = 16;
+        }
+        ekse
+        {
+            $take = $compoundBranchName.Length;
+        }
+        
         $subTail = $compoundBranchName.Substring($take);
         $tail = "-ci:$subTail";
     }
