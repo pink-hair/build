@@ -2,6 +2,10 @@ $branch = $env:BUILD_SOURCEBRANCHNAME;
 $fullBranch = $env:BUILD_SOURCEBRANCH;
 $releaseBranchName = $env:CI_RELEASEBRANCH;
 $buildNumber = $env:BUILD_BUILDNUMBER;
+Write-Warning "Branch $branch";
+Write-Warning "FullBranch $fullBranch";
+Write-Warning "releaseBranchName $releaseBranchName";
+Write-Warning "buildNumber $buildNumber";
 
 if($fullBranch.StartsWith("refs/pull"))
 {
@@ -18,6 +22,7 @@ else
     {
         $compoundBranchName = [System.Text.RegularExpressions.Regex]::Replace($branch, "[^A-Za-z0-9]", "").ToLowerInvariant();
 
+        Write-Warning "CompoundBranchName $compoundBranchName";
         [int]$take = 0;
         if($compoundBranchName.Length -ge 17)
         {
