@@ -18,7 +18,7 @@ for($i = 0; $i -lt $content.Length; $i++)
     }    
 
     $newLine = $line.Replace($token, $replacementValue);
-    [void]$builder.AppendLine($line);
+    [void]$builder.AppendLine($newLine);
 }
 
 $builder.ToString() | out-file $fileName -force;
