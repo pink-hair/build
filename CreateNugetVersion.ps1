@@ -15,7 +15,7 @@ if($fullBranch.StartsWith("refs/pull"))
 }
 else
 {
-    if($branch.ToUpperInvariant -eq $releaseBranchName.ToUpperInvariant())
+    if($branch.ToUpperInvariant() -eq $releaseBranchName.ToUpperInvariant())
     {
          $tail = "";
     }
