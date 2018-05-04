@@ -6,7 +6,7 @@ $buildNumber = $env:BUILD_BUILDNUMBER;
 if($fullBranch.StartsWith("refs/pull"))
 {
     $prid = $env:SYSTEM_PULLREQUEST_PULLREQUESTID;
-    $tail = "-pr:$prid"
+    $tail = "-pr$($prid.ToString())";
 }
 else
 {
@@ -19,9 +19,9 @@ else
         $compoundBranchName = [System.Text.RegularExpressions.Regex]::Replace($branch, "[^A-Za-z0-9]", "").ToLowerInvariant();
 
         [int]$take = 0;
-        if($compoundBranchName.Length -ge 16)
+        if($compoundBranchName.Length -ge 17)
         {
-            $take = 16;
+            $take = 17;
         }
         else
         {
@@ -29,7 +29,7 @@ else
         }
 
         $subTail = $compoundBranchName.Substring($take);
-        $tail = "-ci:$subTail";
+        $tail = "-ci$subTail";
     }
 }
 
