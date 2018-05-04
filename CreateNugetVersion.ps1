@@ -36,7 +36,7 @@ else
 
         Write-Warning "Take $take";
 
-        $subTail = $compoundBranchName.Substring($take);
+        $subTail = $compoundBranchName.Substring(0, $take);
 
         Write-Warning "Subtail $subTail";
         $tail = "-ci$($subTail)";
