@@ -7,6 +7,7 @@ Write-Warning "FullBranch $fullBranch";
 Write-Warning "releaseBranchName $releaseBranchName";
 Write-Warning "buildNumber $buildNumber";
 
+$tail = "";
 if($fullBranch.StartsWith("refs/pull"))
 {
     $prid = $env:SYSTEM_PULLREQUEST_PULLREQUESTID;
@@ -24,7 +25,7 @@ else
 
         Write-Warning "CompoundBranchName $compoundBranchName";
         [int]$take = 0;
-        if($compoundBranchName.Length -ge 17)
+        if($compoundBranchName.Length -gt 17)
         {
             $take = 17;
         }
@@ -33,10 +34,15 @@ else
             $take = $compoundBranchName.Length;
         }
 
+        Write-Warning "Take $take";
+
         $subTail = $compoundBranchName.Substring($take);
-        $tail = "-ci$subTail";
+
+        Write-Warning "Subtail $subTail";
+        $tail = "-ci$($subTail)";
     }
 }
 
-$build = "$buildNumber$tail"
+$build = "$($buildNumber)$($tail)";
+Write-Warning "Build - $build";
 Write-Host "##vso[task.setvariable variable=CI.NugetBuildNumber]$build";
